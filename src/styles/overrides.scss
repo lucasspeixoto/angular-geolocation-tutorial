@@ -1,0 +1,51 @@
+.ant-input-affix-wrapper {
+  border-radius: 10px;
+  height: 40px;
+}
+
+textarea.ant-input {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.ant-picker {
+  border-radius: 10px;
+  height: 40px;
+  width: 100%;
+}
+
+.ant-btn {
+  border-radius: 10px;
+}
+
+.ant-card-body {
+  padding: 20px 5px;
+}
+
+/* Scrollbar Track */
+::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+/* Scrollbar Thumb */
+::-webkit-scrollbar-thumb {
+  background: #062848; /* Gradient for a nice effect */
+  border-radius: 10px; /* Rounded corners */
+  border: 2px solid #f5f5f5; /* Optional: Space between thumb and track */
+}
+
+/* Scrollbar Track Background */
+::-webkit-scrollbar-track {
+  background: #eaeaea; /* Light background */
+  border-radius: 10px;
+}
+
+/* Scrollbar on Hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #062848;
+}
+
+/* Scrollbar Corner */
+::-webkit-scrollbar-corner {
+  background: #eaeaea;
+}

@@ -1,0 +1,43 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a [nzTooltipColor]="'#FF0000'" nzTooltipTitle="Se inscreva no canal!"
+        nzTooltipPlacement="rightTop"
+        nz-button nz-tooltip
+        href="https://www.youtube.com/channel/UC6LY6Xw5ff_KaHwjHWRA9oA"
+        target="_blank">
+        <img src="logo.png" alt="logo" />
+        <h1>Mapas com Leaflet JS
+
+        </h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Geolocalização" nzIcon="aim">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/mapas">Mapa</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <nz-icon class="trigger"
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" />
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
