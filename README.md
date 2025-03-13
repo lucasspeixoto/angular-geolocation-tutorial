@@ -1,12 +1,14 @@
-# Seu formulário angular mais profissional
+# Plotando uma mapa no seu projeto frontend
 
-Repositório do projeto criado no meu canal do youtube sobre dicas para criar formulários mais profissionais no angular, acesse aqui: [Vídeo](https://youtu.be/-E-0Gv0yNwY)
+About
+Repositório do projeto criado em vídeo no meu canal onde conhecemos o LeafletJS, uma biblioteca open source para plot de mapas, uma alternativa ao google maps: [Vídeo](https://youtu.be/hIOLPacy-BI)
 
 ![Capa](public/thumb.png "Capa")
 
 ## Descrição Vídeo
 
-Nesse vídeo, mostramos como isolar as configurações de um formulário no Angular em um arquivo separado e criamos um componente específico para validar erros nos campos, com ajuda do FormContainer.
+Nesse vídeo vamos conhecer uma biblioteca que pode funcionar como alternativa ao google maps
+para plotar mapas nos projetos frontend. Configuramos no vídeo o leaflet em um projeto angular.
 
 ## Clonar o projeto
 
