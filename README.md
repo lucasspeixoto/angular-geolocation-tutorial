@@ -1,7 +1,7 @@
 # Plotando uma mapa no seu projeto frontend
 
 About
-Repositório do projeto criado em vídeo no meu canal onde conhecemos o LeafletJS, uma biblioteca open source para plot de mapas, uma alternativa ao google maps: [Vídeo](https://youtu.be/hIOLPacy-BI)
+Repositório do projeto criado em vídeo no meu canal onde conhecemos o LeafletJS, uma biblioteca open source para plot de mapas, uma alternativa ao google maps: [Vídeo](https://youtu.be/3UVKQZZ1XBc)
 
 ![Capa](public/thumb.png "Capa")
 

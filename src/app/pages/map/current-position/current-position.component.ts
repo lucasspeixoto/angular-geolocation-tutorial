@@ -21,7 +21,7 @@ declare let L: typeof Leaflet;
       }
 
       #map {
-        height: 40vh;
+        height: 100vh;
         width: auto;
         margin-bottom: 20px;
       }
@@ -30,66 +30,64 @@ declare let L: typeof Leaflet;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CurrentPositionComponent implements AfterViewInit {
+  public userMarker!: Leaflet.Marker;
+
+  public map!: Leaflet.Map;
+
   public ngAfterViewInit(): void {
     if (!navigator.geolocation) {
       alert('Geolocation is not supported by your browser.');
     }
 
-    let map = L.map('map');
+    this.map = L.map('map');
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const [latitude, longitude] = this.getLatitudeAndLongitude(position);
 
-        map.setView([latitude, longitude], 13);
+        this.map.setView([latitude, longitude], 13);
+        this.userMarker = L.marker([latitude, longitude]).addTo(this.map);
 
-        let osm = L.tileLayer(
-          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-          {
-            attribution:
-              '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> ',
-            maxZoom: 19,
-          }
-        );
-
-        osm.addTo(map);
-
-        L.marker([latitude, longitude])
-          .addTo(map)
-          .bindPopup('You are here!')
-          .openPopup();
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors',
+          maxZoom: 19,
+        }).addTo(this.map);
       },
-      (error) => {
-        if (error.code) {
-          alert('Unable to retrieve your location');
-        }
-      }
+      this.handlerGeolocationError,
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
 
     navigator.geolocation.watchPosition(
       (position) => {
         const [latitude, longitude] = this.getLatitudeAndLongitude(position);
 
-        L.marker([latitude, longitude])
-          .addTo(map)
-          .bindPopup('You are here!')
-          .openPopup();
+        this.userMarker.setLatLng([latitude, longitude]);
       },
-      (error) => {
-        if (error.code) {
-          alert('Unable to retrieve your location');
-        }
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0,
-      }
+      this.handlerGeolocationError,
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
   }
 
   public getLatitudeAndLongitude(position: GeolocationPosition): number[] {
+    return [51.505, -0.09];
+
     //return [position.coords.latitude, position.coords.longitude];
-    return [40.785091, -73.968285];
+  }
+
+  public handlerGeolocationError(error: GeolocationPositionError): void {
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        console.warn('O usuário negou a solicitação de geolocalização.');
+        break;
+      case error.POSITION_UNAVAILABLE:
+        console.warn('As informações de localização não estão disponíveis.');
+        break;
+      case error.TIMEOUT:
+        console.warn('A solicitação para obter a localização expirou.');
+        break;
+      default:
+        console.warn('Ocorreu um erro desconhecido.');
+        break;
+    }
   }
 }
